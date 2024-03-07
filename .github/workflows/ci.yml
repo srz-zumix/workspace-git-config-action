@@ -68,6 +68,10 @@ jobs:
       - name: Print Output file
         run: cat "${{ steps.test-action.outputs.config_path }}"
 
+      - name: Git config
+        run: |
+          git config --list
+
       - name: Test user name
         run: |
           test "$(git config user.name)" == "hoge"

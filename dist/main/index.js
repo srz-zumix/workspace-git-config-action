@@ -25975,7 +25975,7 @@ async function run() {
     const content = core.getInput('configs', { required: false });
     const runnerTempPath = process.env.RUNNER_TEMP;
     const uniqueId = (0, uuid_1.v4)();
-    const configFileName = `${uniqueId}.gitconfig}`;
+    const configFileName = `${uniqueId}.gitconfig`;
     const configPath = path.join(runnerTempPath, configFileName);
     await fs_1.promises.writeFile(configPath, content);
     core.setOutput('config_path', configPath);
@@ -26002,6 +26002,9 @@ void run();
 
 "use strict";
 
+/**
+ * workspace includeIf listup
+ */
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.getIncludeIfPaths = void 0;
 function getIncludeIfPaths() {

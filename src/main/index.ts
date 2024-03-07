@@ -14,7 +14,7 @@ async function run(): Promise<void> {
 
   const runnerTempPath: string = process.env.RUNNER_TEMP as string
   const uniqueId = uuidv4()
-  const configFileName = `${uniqueId}.gitconfig}`
+  const configFileName = `${uniqueId}.gitconfig`
   const configPath = path.join(runnerTempPath, configFileName)
   await fs.writeFile(configPath, content)
 
