@@ -2,10 +2,6 @@ name: 'Workspace gitconfig action'
 description: 'Provide a workspace scope gitconfig'
 author: 'srz-zumix'
 
-branding:
-  icon: 'edit'
-  color: 'gray-dark'
-
 inputs:
   configs:
     description: 'git .config file format text'
@@ -17,3 +13,8 @@ outputs:
 runs:
   using: node16
   main: dist/main/index.js
+  post: dist/post/index.js
+
+branding:
+  icon: 'edit'
+  color: 'gray-dark'
