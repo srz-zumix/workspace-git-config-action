@@ -21,7 +21,7 @@ async function run(): Promise<void> {
 
     const commandPath: string = await io.which('git', true)
 
-    const workspacePath: string = process.env.WORKSPACE as string
+    const workspacePath: string = process.env.GITHUB_WORKSPACE as string
     const includeIfPaths: string[] = [
         workspacePath,
         `${workspacePath}/**`,

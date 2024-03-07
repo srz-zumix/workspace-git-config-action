@@ -25979,7 +25979,7 @@ async function run() {
     await fs_1.promises.writeFile(configPath, content);
     core.setOutput('config_path', configPath);
     const commandPath = await io.which('git', true);
-    const workspacePath = process.env.WORKSPACE;
+    const workspacePath = process.env.GITHUB_WORKSPACE;
     const includeIfPaths = [
         workspacePath,
         `${workspacePath}/**`,
