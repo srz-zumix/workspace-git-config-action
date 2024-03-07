@@ -57,8 +57,14 @@ jobs:
         id: test-action
         uses: ./
         with:
-          milliseconds: 2000
+          configs: |
+            [user]
+            	name = hoge
 
       - name: Print Output
         id: output
-        run: echo "${{ steps.test-action.outputs.time }}"
+        run: echo "${{ steps.test-action.outputs.config_path }}"
+
+      - name: Test user name
+        run: |
+          test $(git config user.name) == "hoge"
