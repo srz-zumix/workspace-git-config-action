@@ -1264,7 +1264,7 @@ const io = __importStar(__nccwpck_require__(351));
 const exec = __importStar(__nccwpck_require__(514));
 async function run() {
     const commandPath = await io.which('git', true);
-    const workspacePath = process.env.WORKSPACE;
+    const workspacePath = process.env.GITHUB_WORKSPACE;
     const includeIfPaths = [
         workspacePath,
         `${workspacePath}/**`,
