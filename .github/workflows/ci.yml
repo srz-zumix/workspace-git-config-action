@@ -67,4 +67,4 @@ jobs:
 
       - name: Test user name
         run: |
-          test $(git config user.name) == "hoge"
+          test "$(git config user.name)" == "hoge"
