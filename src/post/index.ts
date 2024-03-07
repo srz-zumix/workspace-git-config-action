@@ -3,15 +3,12 @@
  */
 import * as io from '@actions/io'
 import * as exec from '@actions/exec'
+import * as workspace from '../workspace'
 
 async function run(): Promise<void> {
     const commandPath: string = await io.which('git', true)
 
-    const workspacePath: string = process.env.GITHUB_WORKSPACE as string
-    const includeIfPaths: string[] = [
-        workspacePath,
-        `${workspacePath}/**`,
-    ]
+    const includeIfPaths: string[] = workspace.getIncludeIfPaths()
     for(const path of includeIfPaths) {
         const commandArgs: string[] = [
             'config',

@@ -1262,13 +1262,10 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
  */
 const io = __importStar(__nccwpck_require__(351));
 const exec = __importStar(__nccwpck_require__(514));
+const workspace = __importStar(__nccwpck_require__(815));
 async function run() {
     const commandPath = await io.which('git', true);
-    const workspacePath = process.env.GITHUB_WORKSPACE;
-    const includeIfPaths = [
-        workspacePath,
-        `${workspacePath}/**`,
-    ];
+    const includeIfPaths = workspace.getIncludeIfPaths();
     for (const path of includeIfPaths) {
         const commandArgs = [
             'config',
@@ -1281,6 +1278,25 @@ async function run() {
 }
 // eslint-disable-next-line @typescript-eslint/no-floating-promises
 void run();
+
+
+/***/ }),
+
+/***/ 815:
+/***/ ((__unused_webpack_module, exports) => {
+
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.getIncludeIfPaths = void 0;
+function getIncludeIfPaths() {
+    const workspacePath = process.env.GITHUB_WORKSPACE;
+    const includeIfPaths = [
+        workspacePath,
+        `${workspacePath}/**`,
+    ];
+    return includeIfPaths;
+}
+exports.getIncludeIfPaths = getIncludeIfPaths;
 
 
 /***/ }),

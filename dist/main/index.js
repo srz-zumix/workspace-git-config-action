@@ -25970,6 +25970,7 @@ const path = __importStar(__nccwpck_require__(1017));
 const io = __importStar(__nccwpck_require__(7436));
 const exec = __importStar(__nccwpck_require__(1514));
 const uuid_1 = __nccwpck_require__(5840);
+const workspace = __importStar(__nccwpck_require__(3815));
 async function run() {
     const content = core.getInput('configs', { required: false });
     const runnerTempPath = process.env.RUNNER_TEMP;
@@ -25979,11 +25980,7 @@ async function run() {
     await fs_1.promises.writeFile(configPath, content);
     core.setOutput('config_path', configPath);
     const commandPath = await io.which('git', true);
-    const workspacePath = process.env.GITHUB_WORKSPACE;
-    const includeIfPaths = [
-        workspacePath,
-        `${workspacePath}/**`,
-    ];
+    const includeIfPaths = workspace.getIncludeIfPaths();
     for (const path of includeIfPaths) {
         const commandArgs = [
             'config',
@@ -25996,6 +25993,26 @@ async function run() {
 }
 // eslint-disable-next-line @typescript-eslint/no-floating-promises
 void run();
+
+
+/***/ }),
+
+/***/ 3815:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.getIncludeIfPaths = void 0;
+function getIncludeIfPaths() {
+    const workspacePath = process.env.GITHUB_WORKSPACE;
+    const includeIfPaths = [
+        workspacePath,
+        `${workspacePath}/**`,
+    ];
+    return includeIfPaths;
+}
+exports.getIncludeIfPaths = getIncludeIfPaths;
 
 
 /***/ }),
