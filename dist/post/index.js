@@ -1266,12 +1266,12 @@ const workspace = __importStar(__nccwpck_require__(815));
 async function run() {
     const commandPath = await io.which('git', true);
     const includeIfPaths = workspace.getIncludeIfPaths();
-    for (const path of includeIfPaths) {
+    for (const configName of includeIfPaths) {
         const commandArgs = [
             'config',
             '--global',
             '--unset-all',
-            `includeIf."${path}".path`
+            configName
         ];
         await exec.exec(`"${commandPath}"`, commandArgs);
     }
@@ -1298,7 +1298,7 @@ function getIncludeIfPaths() {
         `${workspacePath}/.git`,
         `${workspacePath}/**`,
     ];
-    return includeIfPaths;
+    return includeIfPaths.map(path => `includeIf."gitdir:${path}".path`);
 }
 exports.getIncludeIfPaths = getIncludeIfPaths;
 

@@ -23,11 +23,11 @@ async function run(): Promise<void> {
   const commandPath: string = await io.which('git', true)
 
   const includeIfPaths: string[] = workspace.getIncludeIfPaths()
-  for (const path of includeIfPaths) {
+  for (const configName of includeIfPaths) {
     const commandArgs: string[] = [
       'config',
       '--global',
-      `includeIf."${path}".path`,
+      configName,
       configPath
     ]
     await exec.exec(`"${commandPath}"`, commandArgs)

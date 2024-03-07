@@ -25981,11 +25981,11 @@ async function run() {
     core.setOutput('config_path', configPath);
     const commandPath = await io.which('git', true);
     const includeIfPaths = workspace.getIncludeIfPaths();
-    for (const path of includeIfPaths) {
+    for (const configName of includeIfPaths) {
         const commandArgs = [
             'config',
             '--global',
-            `includeIf."${path}".path`,
+            configName,
             configPath
         ];
         await exec.exec(`"${commandPath}"`, commandArgs);
@@ -26014,7 +26014,7 @@ function getIncludeIfPaths() {
         `${workspacePath}/.git`,
         `${workspacePath}/**`,
     ];
-    return includeIfPaths;
+    return includeIfPaths.map(path => `includeIf."gitdir:${path}".path`);
 }
 exports.getIncludeIfPaths = getIncludeIfPaths;
 
