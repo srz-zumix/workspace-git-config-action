@@ -26008,6 +26008,7 @@ function getIncludeIfPaths() {
     const workspacePath = process.env.GITHUB_WORKSPACE;
     const includeIfPaths = [
         `${workspacePath}/`,
+        `${workspacePath}/.git`,
         `${workspacePath}/**`,
     ];
     return includeIfPaths;
