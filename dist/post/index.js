@@ -26021,17 +26021,18 @@ exports.getIncludeIfPaths = void 0;
  * workspace includeIf listup
  */
 const core = __importStar(__nccwpck_require__(2186));
+const path = __importStar(__nccwpck_require__(1017));
 function getWorkspacePaths() {
     const workspacePath = core.getInput('workspace', { required: false });
     if (!workspacePath) {
         const githubWorkspacePath = process.env.GITHUB_WORKSPACE;
         return [githubWorkspacePath];
     }
-    return workspacePath.split(/\r?\n/);
+    return workspacePath.split(/\r?\n/).map(workspace => path.resolve(workspace));
 }
 function getIncludeIfPaths() {
     const workspacePaths = getWorkspacePaths();
-    return workspacePaths.map(path => `includeIf.gitdir:${path}/**.path`);
+    return workspacePaths.map(workspace => `includeIf.gitdir:${workspace}/**.path`);
 }
 exports.getIncludeIfPaths = getIncludeIfPaths;
 
