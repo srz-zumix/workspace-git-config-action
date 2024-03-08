@@ -117,8 +117,9 @@ jobs:
         run: cat "${{ steps.test-action.outputs.config_path }}"
 
       - name: Test user name
+        shell: bash -ex {0}
         run: |
           test "$(git -C target1/1 config user.name)" == "hoge"
-          test "$(git -C target2/2 config user.name)" != "hoge"
+          test "$(git -C target1/2 config user.name)" != "hoge"
           test "$(git -C target2/1 config user.name)" == "hoge"
           test "$(git -C target2/2 config user.name)" == "hoge"
