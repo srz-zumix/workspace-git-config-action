@@ -1296,7 +1296,7 @@ function getIncludeIfPaths() {
     const includeIfPaths = [
         `${workspacePath}/**`
     ];
-    return includeIfPaths.map(path => `includeIf."gitdir:${path}".path`);
+    return includeIfPaths.map(path => `includeIf.gitdir:${path}.path`);
 }
 exports.getIncludeIfPaths = getIncludeIfPaths;
 

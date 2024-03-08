@@ -7,5 +7,5 @@ export function getIncludeIfPaths(): string[] {
   const includeIfPaths: string[] = [
     `${workspacePath}/**`
   ]
-  return includeIfPaths.map(path => `includeIf."gitdir:${path}".path`)
+  return includeIfPaths.map(path => `includeIf.gitdir:${path}.path`)
 }
