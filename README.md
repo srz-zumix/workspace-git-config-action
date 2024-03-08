@@ -8,13 +8,13 @@ See [action.yml](./action.yml)
 
 ## Example
 
-* GITHUB_WORKSPACE
-  * target1
-    * repo1
-    * repo2
-  * target2
-    * repo1
-    * repo2
+- GITHUB_WORKSPACE
+  - target1
+    - repo1
+    - repo2
+  - target2
+    - repo1
+    - repo2
 
 ```yaml
 - name: Workspace
