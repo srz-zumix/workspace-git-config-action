@@ -1,24 +1,23 @@
-name: 'The name of your action here'
-description: 'Provide a description here'
-author: 'Your name or organization here'
+name: 'Workspace gitconfig action'
+description: 'Provide a workspace scope gitconfig'
+author: 'srz-zumix'
 
-# Add your action's branding here. This will appear on the GitHub Marketplace.
-branding:
-  icon: 'heart'
-  color: 'red'
-
-# Define your inputs here.
 inputs:
-  milliseconds:
-    description: 'Your input description here'
-    required: true
-    default: '1000'
+  configs:
+    description: 'git .config file format text'
+  workspace:
+    description: 'workspace path'
+    default: ${{ github.workspace }}
 
-# Define your outputs here.
 outputs:
-  time:
-    description: 'Your output description here'
+  config_path:
+    description: 'workspace gitconfig file path'
 
 runs:
-  using: node20
-  main: dist/index.js
+  using: node16
+  main: dist/main/index.js
+  post: dist/post/index.js
+
+branding:
+  icon: 'edit'
+  color: 'gray-dark'

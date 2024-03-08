@@ -1,38 +1,40 @@
 {
-  "name": "typescript-action",
-  "description": "GitHub Actions TypeScript template",
+  "name": "workspace-git-config-action",
+  "description": "GitHub Actions workspace git config",
   "version": "0.0.0",
   "author": "",
   "private": true,
-  "homepage": "https://github.com/actions/typescript-action",
+  "homepage": "https://github.com/srz-zumix/workspace-git-config-action",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/actions/typescript-action.git"
+    "url": "git+https://github.com/srz-zumix/workspace-git-config-action.git"
   },
   "bugs": {
-    "url": "https://github.com/actions/typescript-action/issues"
+    "url": "https://github.com/srz-zumix/workspace-git-config-action/issues"
   },
   "keywords": [
     "actions",
-    "node",
-    "setup"
+    "git",
+    "config"
   ],
   "exports": {
-    ".": "./dist/index.js"
+    ".": "./dist/main/index.js"
   },
   "engines": {
-    "node": ">=20"
+    "node": ">=16"
   },
   "scripts": {
     "bundle": "npm run format:write && npm run package",
-    "ci-test": "npx jest",
+    "ci-test": "npx jest --passWithNoTests",
     "coverage": "npx make-coverage-badge --output-path ./badges/coverage.svg",
     "format:write": "npx prettier --write .",
     "format:check": "npx prettier --check .",
     "lint": "npx eslint . -c ./.github/linters/.eslintrc.yml",
-    "package": "npx ncc build src/index.ts -o dist --source-map --license licenses.txt",
+    "package": "npm run package:main && npm run package:post",
+    "package:main": "npx ncc build src/main/index.ts -o dist/main --source-map --license licenses.txt",
+    "package:post": "npx ncc build src/post/index.ts -o dist/post --source-map --license licenses.txt",
     "package:watch": "npm run package -- --watch",
-    "test": "npx jest",
+    "test": "npx jest --passWithNoTests",
     "all": "npm run format:write && npm run lint && npm run test && npm run coverage && npm run package"
   },
   "license": "MIT",
@@ -66,7 +68,10 @@
     ]
   },
   "dependencies": {
-    "@actions/core": "^1.10.1"
+    "@actions/core": "^1.10.1",
+    "@actions/exec": "^1.1.0",
+    "@actions/io": "^1.0.2",
+    "@types/uuid": "^9.0.8"
   },
   "devDependencies": {
     "@types/jest": "^29.5.12",
