@@ -5,6 +5,9 @@ author: 'srz-zumix'
 inputs:
   configs:
     description: 'git .config file format text'
+  workspace:
+    description: 'workspace path'
+    default: ${{ github.workspace }}
 
 outputs:
   config_path:

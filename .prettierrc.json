@@ -12,6 +12,5 @@
   "arrowParens": "avoid",
   "proseWrap": "always",
   "htmlWhitespaceSensitivity": "css",
-  "endOfLine": "lf",
-  "arrayExpand": true
+  "endOfLine": "lf"
 }

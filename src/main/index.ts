@@ -24,7 +24,7 @@ async function run(): Promise<void> {
 
   const includeIfPaths: string[] = workspace.getIncludeIfPaths()
   for (const configName of includeIfPaths) {
-    const commandArgs: string[] = [
+    const commandArgs: string[] = [ // set includeIf command
       'config',
       '--global',
       configName,
