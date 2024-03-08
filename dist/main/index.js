@@ -25983,6 +25983,7 @@ async function run() {
     const includeIfPaths = workspace.getIncludeIfPaths();
     for (const configName of includeIfPaths) {
         const commandArgs = [
+            // set includeIf command
             'config',
             '--global',
             configName,
