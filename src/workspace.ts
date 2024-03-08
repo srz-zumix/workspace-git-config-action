@@ -15,5 +15,7 @@ function getWorkspacePaths(): string[] {
 
 export function getIncludeIfPaths(): string[] {
   const workspacePaths: string[] = getWorkspacePaths()
-  return workspacePaths.map(workspace => `includeIf.gitdir:${workspace}/**.path`)
+  return workspacePaths.map(
+    workspace => `includeIf.gitdir:${workspace}/**.path`
+  )
 }

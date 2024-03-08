@@ -100,7 +100,7 @@ jobs:
 
       - name: Test Local Action
         id: test-action
-        uses: ./
+        uses: ./target1/1
         with:
           workspace: |
             target1/1
