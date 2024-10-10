@@ -19,7 +19,7 @@ See [action.yml](./action.yml)
 ```yaml
 - name: Workspace
   id: test-action
-  uses: srz-zumix/workspace-git-config-action@main
+  uses: srz-zumix/workspace-git-config-action@v1
   with:
     workspace: |
       target1/repo1
