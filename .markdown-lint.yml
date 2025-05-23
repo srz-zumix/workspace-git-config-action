@@ -1,6 +1,13 @@
+# See: https://github.com/DavidAnson/markdownlint
+
 # Unordered list style
 MD004:
   style: dash
+
+# Disable line length for tables
+MD013:
+  tables: false
+  line_length: 150
 
 # Ordered list item prefix
 MD029:

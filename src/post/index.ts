@@ -3,7 +3,7 @@
  */
 import * as io from '@actions/io'
 import * as exec from '@actions/exec'
-import * as workspace from '../workspace'
+import * as workspace from '../workspace.js'
 
 async function run(): Promise<void> {
   const commandPath: string = await io.which('git', true)
@@ -21,5 +21,4 @@ async function run(): Promise<void> {
   }
 }
 
-// eslint-disable-next-line @typescript-eslint/no-floating-promises
 void run()
