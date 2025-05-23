@@ -27247,11 +27247,13 @@ function getWorkspacePaths() {
         const githubWorkspacePath = process.env.GITHUB_WORKSPACE;
         return [githubWorkspacePath];
     }
-    return workspacePath.split(/\r?\n/).map(workspace => require$$1.resolve(workspace));
+    return workspacePath
+        .split(/\r?\n/)
+        .map((workspace) => require$$1.resolve(workspace));
 }
 function getIncludeIfPaths() {
     const workspacePaths = getWorkspacePaths();
-    return workspacePaths.map(workspace => `includeIf.gitdir:${workspace}/**.path`);
+    return workspacePaths.map((workspace) => `includeIf.gitdir:${workspace}/**.path`);
 }
 
 /**
@@ -27271,6 +27273,5 @@ async function run() {
         await execExports.exec(`"${commandPath}"`, commandArgs);
     }
 }
-// eslint-disable-next-line @typescript-eslint/no-floating-promises
 void run();
 //# sourceMappingURL=index.js.map
