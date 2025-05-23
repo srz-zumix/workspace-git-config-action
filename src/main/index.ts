@@ -3,17 +3,17 @@
  */
 import * as core from '@actions/core'
 import { promises as fs } from 'fs'
+import * as crypto from 'crypto'
 import * as path from 'path'
 import * as io from '@actions/io'
 import * as exec from '@actions/exec'
-import { v4 as uuidv4 } from 'uuid'
-import * as workspace from '../workspace'
+import * as workspace from '../workspace.js'
 
 async function run(): Promise<void> {
   const content: string = core.getInput('configs', { required: false })
 
   const runnerTempPath: string = process.env.RUNNER_TEMP as string
-  const uniqueId = uuidv4()
+  const uniqueId = crypto.randomUUID()
   const configFileName = `${uniqueId}.gitconfig`
   const configPath = path.join(runnerTempPath, configFileName)
   await fs.writeFile(configPath, content)
