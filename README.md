@@ -8,6 +8,8 @@ See [action.yml](./action.yml)
 
 ## Example
 
+### Username
+
 - GITHUB_WORKSPACE
   - target1
     - repo1
@@ -17,9 +19,7 @@ See [action.yml](./action.yml)
     - repo2
 
 ```yaml
-- name: Workspace
-  id: test-action
-  uses: srz-zumix/workspace-git-config-action@v1
+- uses: srz-zumix/workspace-git-config-action@v1
   with:
     workspace: |
       target1/repo1
@@ -30,3 +30,14 @@ See [action.yml](./action.yml)
 ```
 
 target1/repo1 and target2/repo1,target2/repo2 user.name is hoge
+
+### Go mod
+
+```yaml
+- uses: srz-zumix/workspace-git-config-action@v1
+  with:
+    workspace: ${{ env.GOMODCACHE }}
+    configs: |
+      [url "https://x-access-token:${{ secrets.YOUR_TOKEN }}@github.com/"]
+        insteadOf = https://github.com/
+```
