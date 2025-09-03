@@ -19,7 +19,9 @@ jobs:
     steps:
       - name: Checkout
         id: checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
+        with:
+          persist-credentials: false
 
       - name: Setup Node.js
         id: setup-node
@@ -50,7 +52,9 @@ jobs:
     steps:
       - name: Checkout
         id: checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
+        with:
+          persist-credentials: false
 
       - name: Test Local Action
         id: test-action
@@ -61,10 +65,13 @@ jobs:
               name = hoge
 
       - name: Print Output
-        id: output
-        run: echo "${{ steps.test-action.outputs.config_path }}"
+        env:
+          CONFIG_PATH: ${{ steps.test-action.outputs.config_path }}
+        run: echo "${CONFIG_PATH}"
       - name: Print Output file
-        run: cat "${{ steps.test-action.outputs.config_path }}"
+        env:
+          CONFIG_PATH: ${{ steps.test-action.outputs.config_path }}
+        run: cat "${CONFIG_PATH}"
       - name: Git config
         run: |
           git config --list
@@ -78,20 +85,24 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
+          persist-credentials: false
           path: target1/1
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
+          persist-credentials: false
           path: target1/2
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
+          persist-credentials: false
           path: target2/1
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
+          persist-credentials: false
           path: target2/2
 
       - name: Test Local Action
@@ -106,10 +117,13 @@ jobs:
               name = hoge
 
       - name: Print Output
-        id: output
-        run: echo "${{ steps.test-action.outputs.config_path }}"
+        env:
+          CONFIG_PATH: ${{ steps.test-action.outputs.config_path }}
+        run: echo "${CONFIG_PATH}"
       - name: Print Output file
-        run: cat "${{ steps.test-action.outputs.config_path }}"
+        env:
+          CONFIG_PATH: ${{ steps.test-action.outputs.config_path }}
+        run: cat "${CONFIG_PATH}"
 
       - name: Test user name
         shell: bash -ex {0}
@@ -125,7 +139,9 @@ jobs:
     steps:
       - name: Checkout
         id: checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
+        with:
+          persist-credentials: false
 
       - name: Test Local Action
         id: test-action
