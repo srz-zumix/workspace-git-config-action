@@ -19,7 +19,7 @@ See [action.yml](./action.yml)
     - repo2
 
 ```yaml
-- uses: srz-zumix/workspace-git-config-action@v1
+- uses: srz-zumix/workspace-git-config-action@v2
   with:
     workspace: |
       target1/repo1
@@ -34,7 +34,7 @@ target1/repo1 and target2/repo1,target2/repo2 user.name is hoge
 ### Go mod
 
 ```yaml
-- uses: srz-zumix/workspace-git-config-action@v1
+- uses: srz-zumix/workspace-git-config-action@v2
   with:
     workspace: ${{ env.GOMODCACHE }}
     configs: |
