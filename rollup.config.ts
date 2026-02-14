@@ -23,6 +23,7 @@ const config = [
       format: 'es',
       sourcemap: true
     },
+    context: 'this',
     plugins: [typescript(), nodeResolve({ preferBuiltins: true }), commonjs()]
   }
 ]
