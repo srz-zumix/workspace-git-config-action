@@ -146,3 +146,40 @@ jobs:
       - name: Test Local Action
         id: test-action
         uses: ./
+
+  symbolik-link-test:
+    name: Symbolic Link Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create Symbolic Workspace
+        uses: DeNA/setup-job-workspace-action@5d61b3e428f6e8c42cbb357996cab697d82d0180 # v4.0.0
+
+      - name: Checkout
+        id: checkout
+        uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+
+      - name: Test Local Action with Symbolic Link
+        id: test-action
+        uses: ./
+        with:
+          configs: |
+            [user]
+              name = hoge
+
+      - name: Print Output
+        env:
+          CONFIG_PATH: ${{ steps.test-action.outputs.config_path }}
+        run: echo "${CONFIG_PATH}"
+      - name: Print Output file
+        env:
+          CONFIG_PATH: ${{ steps.test-action.outputs.config_path }}
+        run: cat "${CONFIG_PATH}"
+      - name: Git config
+        run: |
+          git config --list
+
+      - name: Test user name
+        run: |
+          test "$(git config user.name)" == "hoge"
