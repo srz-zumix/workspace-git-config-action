@@ -13,7 +13,7 @@ function getWorkspacePaths(): string[] {
   }
   return workspacePath
     .split(/\r?\n/)
-    .map((workspace) => path.resolve(workspace))
+    .map((workspace) => fs.realpathSync(path.resolve(workspace)))
 }
 
 export function getIncludeIfPaths(): string[] {

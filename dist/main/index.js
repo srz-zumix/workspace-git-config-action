@@ -28787,7 +28787,7 @@ function getWorkspacePaths() {
     }
     return workspacePath
         .split(/\r?\n/)
-        .map((workspace) => path.resolve(workspace));
+        .map((workspace) => fs.realpathSync(path.resolve(workspace)));
 }
 function getIncludeIfPaths() {
     const workspacePaths = getWorkspacePaths();
