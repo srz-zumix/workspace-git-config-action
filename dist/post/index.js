@@ -28633,7 +28633,7 @@ function getWorkspacePaths() {
     const workspacePath = getInput('workspace', { });
     if (!workspacePath) {
         const githubWorkspacePath = process.env.GITHUB_WORKSPACE;
-        return [githubWorkspacePath];
+        return [fs.realpathSync(githubWorkspacePath)];
     }
     return workspacePath
         .split(/\r?\n/)

@@ -2,13 +2,14 @@
  * workspace includeIf listup
  */
 import * as core from '@actions/core'
+import * as fs from 'fs'
 import * as path from 'path'
 
 function getWorkspacePaths(): string[] {
   const workspacePath: string = core.getInput('workspace', { required: false })
   if (!workspacePath) {
     const githubWorkspacePath: string = process.env.GITHUB_WORKSPACE as string
-    return [githubWorkspacePath]
+    return [fs.realpathSync(githubWorkspacePath)]
   }
   return workspacePath
     .split(/\r?\n/)
