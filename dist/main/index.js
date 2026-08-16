@@ -29204,6 +29204,11 @@ function getIncludeIfPaths() {
 /**
  * The entrypoint for the action.
  */
+/**
+ * The main function for the action.
+ *
+ * @returns Resolves when the action is complete.
+ */
 async function run() {
     const content = getInput('configs', { required: false });
     const runnerTempPath = process.env.RUNNER_TEMP;
