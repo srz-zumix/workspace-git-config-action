@@ -9,6 +9,11 @@ import * as io from '@actions/io'
 import * as exec from '@actions/exec'
 import * as workspace from '../workspace.js'
 
+/**
+ * The main function for the action.
+ *
+ * @returns Resolves when the action is complete.
+ */
 async function run(): Promise<void> {
   const content: string = core.getInput('configs', { required: false })
 
